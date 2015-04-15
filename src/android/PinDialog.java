@@ -31,9 +31,6 @@ public class PinDialog extends CordovaPlugin {
         	final JSONArray buttonLabels = args.getJSONArray(2);
         	
         	final CordovaInterface cordova = this.cordova;
-            final EditText promptInput =  new EditText(cordova.getActivity());
-            promptInput.setInputType(InputType.TYPE_CLASS_NUMBER);
-            promptInput.setTransformationMethod(PasswordTransformationMethod.getInstance());
            
             Runnable runnable = new Runnable() {
                 public void run() {
@@ -41,8 +38,6 @@ public class PinDialog extends CordovaPlugin {
                     dlg.setMessage(message);
                     dlg.setTitle(title);
                     dlg.setCancelable(true);
-                    
-                    dlg.setView(promptInput);
                     
                     final JSONObject result = new JSONObject();
                     
@@ -55,7 +50,7 @@ public class PinDialog extends CordovaPlugin {
                                         dialog.dismiss();
                                         try {
                                             result.put("buttonIndex",1);
-                                            result.put("input1", promptInput.getText().toString().trim().length()==0 ? "" : promptInput.getText());                                                                                        
+                                            result.put("input1", "");                                                                                        
                                         } catch (JSONException e) { e.printStackTrace(); }
                                         callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, result));
                                     }
@@ -72,7 +67,7 @@ public class PinDialog extends CordovaPlugin {
                                         dialog.dismiss();
                                         try {
                                             result.put("buttonIndex",2);
-                                            result.put("input1", promptInput.getText().toString().trim().length()==0 ? "" : promptInput.getText());
+                                            result.put("input1", "" );
                                         } catch (JSONException e) { e.printStackTrace(); }
                                         callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, result));
                                     }
@@ -89,7 +84,7 @@ public class PinDialog extends CordovaPlugin {
                                         dialog.dismiss();
                                         try {
                                             result.put("buttonIndex",3);
-                                            result.put("input1", promptInput.getText().toString().trim().length()==0 ? "" : promptInput.getText());
+                                            result.put("input1", "");
                                         } catch (JSONException e) { e.printStackTrace(); }
                                         callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, result));
                                     }
@@ -102,7 +97,7 @@ public class PinDialog extends CordovaPlugin {
                             dialog.dismiss();
                             try {
                                 result.put("buttonIndex",0);
-                                result.put("input1", promptInput.getText().toString().trim().length()==0 ? "" : promptInput.getText());
+                                result.put("input1", "");
                             } catch (JSONException e) { e.printStackTrace(); }
                             callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, result));
                         }
